@@ -1,6 +1,5 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from menu.models import Menu
 from menu.serializers import MenuSerializer
 from menu.services import fetch_menus
 
