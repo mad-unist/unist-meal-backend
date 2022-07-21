@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    env_file:
+      - ./secrets/.env.development
+    depends_on:
+      - db
+    networks:
+      - shared_network
+    volumes:
+      - .:/workspace
+      - packages:/usr/local/lib/python3.9/site-packages
+      - bin:/usr/local/bin
+
+  db:
+    image: postgres:10-alpine
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - 5124:5432
+    networks:
+      - shared_network
+    environment:
+      POSTGRES_DB: unist-meal-backend
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+networks:
+  shared_network:
+    driver: bridge
+
+volumes:
+  db-volume: null
+  packages: null
+  bin: null

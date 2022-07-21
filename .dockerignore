@@ -1,0 +1,12 @@
+.git
+Dockerfile
+.DS_Store
+.gitignore
+.dockerignore
+.python-version
+**/README.md
+**/.vscode
+**/__pycache__
+**/*.env.*
+**/*.pyc
+**/secrets
