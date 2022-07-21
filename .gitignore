@@ -8,3 +8,13 @@ db.sqlite3
 .DS_Store
 
 .vscode/
+
+# Secret Environment
+**/secrets/*
+*.env.*
+*.env
+
+# media and static
+*/media/
+static
+src/staticfiles/*
