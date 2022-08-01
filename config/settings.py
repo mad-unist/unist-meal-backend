@@ -36,7 +36,10 @@ def get_secret(setting):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = get_secret("SECRET_KEY")
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '(django-insecure-12s0%yu0gdqg5*o$#&#nx!r3q(gx&l9%lwz!m7pndcwzx&kufz)w')
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-12s0%yu0gdqg5*o$#&#nx!r3q(gx&l9%lwz!m7pndcwzx&kufz",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
