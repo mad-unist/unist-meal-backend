@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 class Menu(models.Model):
     place = models.CharField(max_length=50)
-    type = models.CharField(max_length=50, blank=True)
+    type = models.CharField(max_length=50, blank=True, null=True)
     time = models.CharField(max_length=50)
     content = models.TextField()
-    calorie = models.IntegerField()
+    calorie = models.IntegerField(blank=True, null=True)
     date = models.DateTimeField()
 
     def __str__(self) -> str:

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "restaurant",
     "picture",
     "notice",
+    "util",
 ]
 
 MIDDLEWARE = [
