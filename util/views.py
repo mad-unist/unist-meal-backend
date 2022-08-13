@@ -35,6 +35,7 @@ class ProcessExcelMenuDormitory(APIView):
                 datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0][0], week_lunch_idx[0][1], week_lunch_idx[0][2], week_lunch_idx[0][3])) # 점심 (한식)
                 datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[1][0], week_lunch_idx[1][1], week_lunch_idx[1][2], week_lunch_idx[1][3])) # 점심 (일품)
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0], evening_idx[1], evening_idx[2])) # 저녁
+        datas = list(filter(lambda item: item is not None, datas))
         return datas
         
     def post(self, requset):
@@ -60,6 +61,7 @@ class ProcessExcelMenuProfessor(APIView):
         for i in range(5):  
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0], week_lunch_idx[1], week_lunch_idx[2])) # 점심
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0], evening_idx[1], evening_idx[2])) # 저녁
+        datas = list(filter(lambda item: item is not None, datas))
         return datas
         
     def post(self, requset):
