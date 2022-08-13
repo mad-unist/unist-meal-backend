@@ -12,13 +12,15 @@ def get_excel_sheet(excel_file):
 def make_menu(
     worksheet, place, day, date,
     content_start, content_end,
-    time, type=None):
+    time, type=""):
+    calorie = worksheet[day][content_end].value
+    if calorie is None:
+        return None
     contents = ""
     for cell in worksheet[day][content_start:content_end]:
         if cell.value is not None:
             contents += str(cell.value) + "\n"
     contents = contents.rstrip('\n')
-    calorie = worksheet[day][content_end].value
     try:
         menus = Menu.objects.create(
         place=place,

@@ -20,7 +20,7 @@ class ProcessExcelMenuDormitory(APIView):
         day_idx = ["E", "G", "I", "K", "M", "O", "Q"]
         date_idx = 6
         moring_idx = [7, 13, "아침"]
-        week_lunch_idx = [[14, 21, "점심", "한식"], [22, 28, "점심", "일품"]]
+        week_lunch_idx = [[14, 21, "점심", "한식"], [22, 27, "점심", "일품"]]
         weekend_lunch_idx = [14, 27, "점심"]
         evening_idx = [34, 41, "저녁"]
         
