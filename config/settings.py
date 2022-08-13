@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     "menu",
     "photo",
     "restaurant",
-    "picture"
+    "picture",
+    "notice",
 ]
 
 MIDDLEWARE = [

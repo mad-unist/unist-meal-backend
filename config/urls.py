@@ -22,4 +22,5 @@ urlpatterns = [
     path("photo/", include("photo.urls")),
     path("restaurant/", include("restaurant.urls")),
     path("picture/", include("picture.urls")),
+    path("notice/", include("notice.urls")),
 ]
