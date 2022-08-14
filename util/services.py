@@ -18,7 +18,7 @@ def make_menu(
         return None
     contents = ""
     for cell in worksheet[day][content_start:content_end]:
-        if cell.value is not None:
+        if cell.value is not None and cell.value != "★":
             contents += str(cell.value) + "\n"
     contents = contents.rstrip('\n')
     try:
