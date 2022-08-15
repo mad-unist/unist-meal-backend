@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAdminUser
 
 class UserList(APIView):
     
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
     
     def get(self, request):
         users = fetch_users()
