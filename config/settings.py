@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "picture",
     "notice",
     "util",
+    "rating",
 ]
 
 MIDDLEWARE = [

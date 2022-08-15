@@ -25,4 +25,5 @@ urlpatterns = [
     path("picture/", include("picture.urls")),
     path("notice/", include("notice.urls")),
     path("util/", include("util.urls", namespace="util")),
+    path("rating/", include("rating.urls", namespace="rating")),
 ]
