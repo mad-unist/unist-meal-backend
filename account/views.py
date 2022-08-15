@@ -15,8 +15,8 @@ class UserList(APIView):
         return Response({"data": data}, status=200)
     
     def post(self, request):
-        kakao_id = request.data["kakao_id"]
+        id = request.data["user_id"]
         email = request.data["email"] if "email" in request.data else None
-        user = create_user(kakao_id, email)
+        user = create_user(id, email)
         data = UserSerializer(user).data
         return Response({"data": data}, status=200)
