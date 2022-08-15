@@ -9,6 +9,12 @@ def fetch_ratings():
     ratings = Rating.objects.filter(**conditions).all()
     return ratings
 
+
+def fetch_ratings_by_user(user_id):
+    conditions = {"user_id": user_id}
+    ratings = Rating.objects.filter(**conditions).all()
+    return ratings
+
 def check_today_menu_rated(menu_id):
     menu = get_menu(menu_id)
     menu_date = menu.date.strftime("%Y-%m-%d")
