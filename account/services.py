@@ -7,6 +7,13 @@ def fetch_users():
     users = User.objects.filter(**conditions).all()
     return users
 
+def get_user(id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        raise ValidationError("Error for getting user")
+    return user
+
 def create_user(id, email):
     try:
         user = User.objects.create(
