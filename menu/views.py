@@ -1,11 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from menu.serializers import MenuSerializer
-from menu.services import fetch_menus
+from menu.services import fetch_menus, fetch_today_menus
 
 
 class MenuList(APIView):
     def get(self, request):
         menus = fetch_menus()
+        data = MenuSerializer(menus, many=True).data
+        return Response({"data": data}, status=200)
+
+class TodayMenuList(APIView):
+    def get(self, request):
+        menus = fetch_today_menus()
         data = MenuSerializer(menus, many=True).data
         return Response({"data": data}, status=200)
