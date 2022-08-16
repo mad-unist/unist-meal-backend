@@ -25,3 +25,12 @@ deploy:
 	heroku run python manage.py migrate
 	heroku run python manage.py collectstatic --noinput
 	heroku restart
+
+# migrate 실행
+migrate:
+	python manage.py makemigrations
+	python manage.py migrate
+
+# test 실행
+test:
+	python manage.py test
