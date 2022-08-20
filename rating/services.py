@@ -2,7 +2,7 @@ from menu.services import get_menu
 from rating.models import Rating
 from django.db.utils import IntegrityError
 from rest_framework.exceptions import ValidationError
-from datetime import datetime
+from datetime import datetime, timedelta, time
 
 def fetch_ratings():
     conditions = {}
@@ -12,6 +12,15 @@ def fetch_ratings():
 
 def fetch_ratings_by_user(user_id):
     conditions = {"user_id": user_id}
+    ratings = Rating.objects.filter(**conditions).all()
+    return ratings
+
+def fetch_today_ratings_by_user(user_id):
+    today = datetime.now().date()
+    tomorrow = today + timedelta(1)
+    today_start = datetime.combine(today, time())
+    today_end = datetime.combine(tomorrow, time())
+    conditions = {"user_id": user_id, "menu__date__lt": today_end, "menu__date__gte": today_start}
     ratings = Rating.objects.filter(**conditions).all()
     return ratings
 
