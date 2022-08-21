@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Menu(models.Model):
     place = models.CharField(max_length=50)
-    type = models.CharField(max_length=50, blank=True, null=True)
+    type = models.CharField(max_length=50, blank=True)
     time = models.CharField(max_length=50)
     content = models.TextField()
     calorie = models.IntegerField(blank=True, null=True)
