@@ -2,13 +2,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import User
 from account.serializers import UserSerializer
-from account.services import fetch_users, create_user, get_user
-from rest_framework.permissions import IsAdminUser
-
+from account.services import delete_user, fetch_users, create_user, get_user
 
 class UserList(APIView):
-    
-    # permission_classes = [IsAdminUser]
     
     def get(self, request):
         users = fetch_users()
@@ -24,3 +20,14 @@ class UserList(APIView):
             user = create_user(id, email)
         data = UserSerializer(user).data
         return Response({"data": data}, status=200)
+
+class UserDetail(APIView):
+    
+    def get(self, request, id):
+        user = get_user(id)
+        data = UserSerializer(user).data
+        return Response({"data": data}, status=200)
+    
+    def delete(self, request, id):
+        delete_user(id)
+        return Response({"message": "success"}, status=204)

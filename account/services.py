@@ -23,3 +23,10 @@ def create_user(id, email):
     except IntegrityError:
         raise ValidationError("Error for creating user")
     return user
+
+def delete_user(id):
+    try:
+        user = get_user(id)
+        user.delete()
+    except User.DoesNotExist:
+        raise ValidationError("Error for deleting user")
