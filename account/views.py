@@ -24,10 +24,12 @@ class UserList(APIView):
 class UserDetail(APIView):
     
     def get(self, request, id):
+        id = request.data["user_id"]
         user = get_user(id)
         data = UserSerializer(user).data
         return Response({"data": data}, status=200)
     
-    def delete(self, request, id):
+    def delete(self, request):
+        id = request.data["user_id"]
         delete_user(id)
         return Response({"message": "success"}, status=204)
