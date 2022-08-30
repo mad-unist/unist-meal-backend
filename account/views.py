@@ -6,12 +6,6 @@ from account.serializers import UserSerializer
 import account.services as services
 
 class UserList(APIView):
-    
-    def get(self, request):
-        users = services.fetch_users()
-        data = UserSerializer(users, many=True).data
-        return Response({"data": data}, status=200)
-    
     def post(self, request):
         id = request.data["user_id"]
         email = request.data["email"] if "email" in request.data else None
@@ -22,11 +16,6 @@ class UserList(APIView):
         data = UserSerializer(user).data
         return Response({"data": data}, status=200)
         
-    def delete(self, request):
-        id = request.data["user_id"]
-        delete_user(id)
-        return Response({"data": "success"}, status=204)
-
 @api_view(["POST"])
 def delete_user(request):
     id = request.data["user_id"]
