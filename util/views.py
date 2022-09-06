@@ -35,7 +35,7 @@ class ProcessExcelMenuDormitory(APIView):
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0][0], week_lunch_idx[0][1], week_lunch_idx[0][2], week_lunch_idx[0][3])) # 점심 (한식)
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[1][0], week_lunch_idx[1][1], week_lunch_idx[1][2], week_lunch_idx[1][3])) # 점심 (할랄)
             datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0][0], evening_idx[0][1], evening_idx[0][2])) # 저녁
-            datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[1][0], evening_idx[1][1], evening_idx[1][2])) # 저녁
+            datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[1][0], evening_idx[1][1], evening_idx[1][2], evening_idx[1][3])) # 저녁 (할랄)
         datas = list(filter(lambda item: item is not None, datas))
         return datas
         
