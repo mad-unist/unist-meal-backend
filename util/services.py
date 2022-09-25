@@ -41,7 +41,7 @@ def make_7dates(day):
 
 def parse_calorie(calorie):
     if calorie is None:
-        return None
+        return 0
     if isinstance(calorie, int):
         return calorie
     if calorie.find(",") != -1:
