@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rating.models import Rating
-from rating.serializers import RatingSerializer, RatingXMenuSerializer
+from rating.serializers import RatingSerializer
 from rating.services import check_other_menu_rated_in_same_time, check_today_menu_rated, fetch_ratings, create_rating, fetch_today_ratings_by_user, update_rating, delete_rating, fetch_ratings_by_user
 
 
@@ -43,9 +43,3 @@ class TodayRatingListByUser(APIView):
         ratings = fetch_today_ratings_by_user(user_id)
         data = RatingSerializer(ratings, many=True).data
         return Response({"data": data}, status=200)
-
-class RatingXMenuList(APIView):
-    def get(self, request):
-        ratings = fetch_ratings()
-        data = RatingXMenuSerializer(ratings, many=True).data
-        return Response(data, status=200)

@@ -8,18 +8,3 @@ class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
         fields = ("id", "rating", "user", "menu")
-
-class MenuXRatingSerializer(serializers.ModelSerializer):
-    date = serializers.SerializerMethodField()
-    class Meta:
-        model = Menu
-        fields = ("place", "time", "date")
-
-    def get_date(self, obj):
-        return obj.date.strftime("%Y-%m-%d")
-    
-class RatingXMenuSerializer(serializers.ModelSerializer):
-    menu = MenuXRatingSerializer()
-    class Meta:
-        model = Rating
-        fields = ("id", "menu", "rating")

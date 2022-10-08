@@ -18,6 +18,11 @@ def fetch_today_menus():
     menus = Menu.objects.filter(**conditions).all()
     return menus
 
+def fetch_menus_with_ratings():
+    conditions = {"ratings__isnull": False}
+    menus = Menu.objects.filter(**conditions).all()
+    return menus
+
 def get_menu(menu_id):
     try:
         menu = Menu.objects.get(id=menu_id)
