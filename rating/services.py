@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, time
 
 def fetch_ratings():
     conditions = {}
-    ratings = Rating.objects.filter(**conditions).all()
+    ratings = Rating.objects.filter(**conditions).order_by("-created_at").all()
     return ratings
 
 

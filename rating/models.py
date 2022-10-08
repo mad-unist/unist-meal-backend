@@ -7,9 +7,12 @@ class Rating(models.Model):
     rating = models.FloatField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings')
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='ratings')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return f"{self.rating} - {self.user} - {self.menu}"
     
     class Meta:
         constraints = [models.UniqueConstraint(fields=['user', 'menu'], name='unique_rating')]
+        ordering = ['-created_at']

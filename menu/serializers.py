@@ -16,4 +16,5 @@ class MenuSerializer(serializers.ModelSerializer):
     
     def get_rating_count(self, obj):
         return obj.ratings.all().count()
+
     
