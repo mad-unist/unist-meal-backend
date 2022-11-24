@@ -8,6 +8,7 @@ class Menu(models.Model):
     content = models.TextField()
     calorie = models.IntegerField(blank=True, null=True)
     date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"{self.place}-{self.time}-{self.date.month}/{self.date.day}-{self.type}"

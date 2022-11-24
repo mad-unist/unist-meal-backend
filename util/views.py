@@ -28,7 +28,8 @@ class ProcessExcelMenuDormitory(APIView):
                 date_idx = 6
                 moring_idx = [7, 13, "아침"]
                 week_lunch_idx = [[14, 21, "점심", "한식"], [22, 28, "점심", "할랄"]]
-                evening_idx = [[35, 42, "저녁"], [43, 49, "저녁", "할랄"]]
+                # evening_idx = [[35, 42, "저녁"], [43, 49, "저녁", "할랄"]]
+                evening_idx = [[29, 36, "저녁", "한식"], [37, 43, "저녁", "할랄"]]
                 
                 datas = []
                 date = worksheet["E"][date_idx].value
@@ -37,7 +38,7 @@ class ProcessExcelMenuDormitory(APIView):
                     datas.append(make_menu(worksheet, place, day_idx[i], dates[i], moring_idx[0], moring_idx[1], moring_idx[2])) # 아침
                     datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0][0], week_lunch_idx[0][1], week_lunch_idx[0][2], week_lunch_idx[0][3])) # 점심 (한식)
                     datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[1][0], week_lunch_idx[1][1], week_lunch_idx[1][2], week_lunch_idx[1][3])) # 점심 (할랄)
-                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0][0], evening_idx[0][1], evening_idx[0][2])) # 저녁
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0][0], evening_idx[0][1], evening_idx[0][2], evening_idx[0][3])) # 저녁 (한식)
                     datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[1][0], evening_idx[1][1], evening_idx[1][2], evening_idx[1][3])) # 저녁 (할랄)
                 datas = list(filter(lambda item: item is not None, datas))
         except:
