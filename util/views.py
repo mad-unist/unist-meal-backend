@@ -51,6 +51,37 @@ class ProcessExcelMenuDormitory(APIView):
         datas = self.process_menu(worksheet, places[0])        
         return Response({"count": len(datas), "data": MenuSerializer(datas, many=True).data}, status=200)
     
+class ProcessExcelMenuDormitoryVacation(APIView):
+    permission_classes = [IsAdminUser]
+
+    @transaction.atomic(using='default')
+    def process_menu(self, worksheet, place):
+        try:
+            with transaction.atomic():
+                day_idx = ["E", "G", "I", "K", "M", "O", "Q"]
+                date_idx = 6
+                moring_idx = [7, 13, "아침"]
+                week_lunch_idx = [14, 21, "점심", "한식"]
+                evening_idx = [29, 36, "저녁", "한식"]
+                
+                datas = []
+                date = worksheet["E"][date_idx].value
+                dates= make_7dates(date)
+                for i in range(7):  
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], moring_idx[0], moring_idx[1], moring_idx[2])) # 아침
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0], week_lunch_idx[1], week_lunch_idx[2], week_lunch_idx[3])) # 점심 (한식)
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0], evening_idx[1], evening_idx[2], evening_idx[3])) # 저녁 (한식)
+                datas = list(filter(lambda item: item is not None, datas))
+        except:
+            raise ValidationErr("식단표 업로드에 실패했습니다.")
+
+        return datas
+        
+    def post(self, requset):
+        worksheet = get_excel_sheet(self.request.FILES["excel_file"])
+        datas = self.process_menu(worksheet, places[0])        
+        return Response({"count": len(datas), "data": MenuSerializer(datas, many=True).data}, status=200)
+    
 class ProcessExcelMenuStudent(APIView):
     permission_classes = [IsAdminUser]
 
