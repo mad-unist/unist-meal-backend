@@ -62,7 +62,7 @@ class ProcessExcelMenuDormitoryVacation(APIView):
                 date_idx = 6
                 moring_idx = [7, 13, "아침"]
                 week_lunch_idx = [14, 21, "점심", "한식"]
-                evening_idx = [29, 36, "저녁", "한식"]
+                evening_idx = [22, 29, "저녁", "한식"]
                 
                 datas = []
                 date = worksheet["E"][date_idx].value
