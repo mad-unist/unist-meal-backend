@@ -19,6 +19,20 @@
                 style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
         </form>
 
+        <h1> 기숙사 식당 Version 2</h1>  
+        <form action="{% url "util:v1_process_menus_dormitory2" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file"
+                title="Upload excel file"
+                name="excel_file"
+                style="border: 1px solid black; padding: 5px;"
+                required="required">
+            <p>
+            <input type="submit"
+                value="Upload"
+                style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
+
         <h1> 기숙사 식당 (방학)</h1>  
         <form action="{% url "util:v1_process_menus_dormitory_vacation" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
