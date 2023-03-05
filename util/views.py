@@ -143,6 +143,34 @@ class ProcessExcelMenuStudent(APIView):
         datas = self.process_menu(worksheet, places[1])        
         return Response({"count": len(datas), "data": MenuSerializer(datas, many=True).data}, status=200)
     
+class ProcessExcelMenuStudent2(APIView):
+    permission_classes = [IsAdminUser]
+
+    @transaction.atomic(using='default')
+    def process_menu(self, worksheet, place):
+        try:
+            with transaction.atomic():
+                day_idx = ["E", "G", "I", "K", "M"]
+                date_idx = 5
+                week_lunch_idx = [6, 12, "점심"]
+                evening_idx = [17, 23, "저녁"]
+                
+                datas = []
+                date = worksheet["E"][date_idx].value
+                dates= make_7dates(date)
+                for i in range(5):  
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], week_lunch_idx[0], week_lunch_idx[1], week_lunch_idx[2])) # 점심
+                    datas.append(make_menu(worksheet, place, day_idx[i], dates[i], evening_idx[0], evening_idx[1], evening_idx[2])) # 저녁
+                datas = list(filter(lambda item: item is not None, datas))
+        except:
+            raise ValidationErr("식단표 업로드에 실패했습니다.")
+        return datas
+    
+    def post(self, requset):
+        worksheet = get_excel_sheet(self.request.FILES["excel_file"])
+        datas = self.process_menu(worksheet, places[1])        
+        return Response({"count": len(datas), "data": MenuSerializer(datas, many=True).data}, status=200)
+    
     
 class ProcessExcelMenuProfessor(APIView):
     permission_classes = [IsAdminUser]
